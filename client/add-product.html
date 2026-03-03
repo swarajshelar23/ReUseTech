@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product - ReUseTech</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h1 id="nav-logo">ReUseTech</h1>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/dashboard" id="nav-dashboard">Dashboard</a></li>
+        <li><a href="/add-product" id="nav-add-product">Add Product</a></li>
+        <li><a href="#" id="nav-logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Add Product Form Section -->
+  <section class="form-section" id="add-product-section">
+    <div class="container">
+      <div class="form-container">
+        <h2 id="add-product-heading">Add New Product</h2>
+        <p id="add-product-subtitle">List your used electronics for sale</p>
+        
+        <div id="add-product-message" class="message" style="display: none;" data-testid="add-product-message"></div>
+
+        <form id="add-product-form" data-testid="add-product-form">
+          <div class="form-group">
+            <label for="product-title">Product Title *</label>
+            <input 
+              type="text" 
+              id="product-title" 
+              name="title" 
+              class="form-input"
+              placeholder="e.g., iPhone 12 Pro 128GB"
+              required
+              maxlength="100"
+              data-testid="product-title"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="product-description">Description *</label>
+            <textarea 
+              id="product-description" 
+              name="description" 
+              class="form-input"
+              rows="5"
+              placeholder="Describe the product condition, features, etc."
+              required
+              maxlength="1000"
+              data-testid="product-description"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="product-category">Category *</label>
+            <select id="product-category" name="category" class="form-input" required data-testid="product-category">
+              <option value="">Select a category</option>
+              <option value="Smartphones">Smartphones</option>
+              <option value="Laptops">Laptops</option>
+              <option value="Tablets">Tablets</option>
+              <option value="Cameras">Cameras</option>
+              <option value="Audio">Audio</option>
+              <option value="Gaming">Gaming</option>
+              <option value="Wearables">Wearables</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="product-condition">Condition *</label>
+            <select id="product-condition" name="condition" class="form-input" required data-testid="product-condition">
+              <option value="">Select condition</option>
+              <option value="Like New">Like New</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+              <option value="Fair">Fair</option>
+              <option value="Poor">Poor</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="product-price">Price ($) *</label>
+            <input 
+              type="number" 
+              id="product-price" 
+              name="price" 
+              class="form-input"
+              placeholder="0"
+              required
+              min="0"
+              step="0.01"
+              data-testid="product-price"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="product-image">Image URL</label>
+            <input 
+              type="url" 
+              id="product-image" 
+              name="imageUrl" 
+              class="form-input"
+              placeholder="https://example.com/image.jpg"
+              data-testid="product-image"
+            >
+            <small>Leave blank for default image</small>
+          </div>
+
+          <button type="submit" id="btn-submit-product" class="btn btn-primary btn-block" data-testid="submit-product-button">
+            Add Product
+          </button>
+        </form>
+
+        <p class="form-footer" id="add-product-footer">
+          <a href="/dashboard" id="link-back-dashboard">Back to Dashboard</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="main-footer">
+    <div class="container">
+      <p id="footer-text">&copy; 2026 ReUseTech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/product.js"></script>
+</body>
+</html>

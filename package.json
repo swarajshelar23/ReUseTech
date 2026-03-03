@@ -1,0 +1,26 @@
+{
+  "name": "reusetech",
+  "version": "1.0.0",
+  "description": "Used Electronics Resale Platform - Full Stack Application",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": ["electronics", "resale", "marketplace", "nodejs", "express", "mongodb"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
+    "dotenv": "^16.0.3",
+    "cors": "^2.8.5",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - ReUseTech</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h1 id="nav-logo">ReUseTech</h1>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li class="nav-auth" id="nav-auth-links">
+          <a href="/login" id="nav-login">Login</a>
+          <a href="/register" id="nav-register">Register</a>
+        </li>
+        <li class="nav-user" id="nav-user-links" style="display: none;">
+          <a href="/dashboard" id="nav-dashboard">Dashboard</a>
+          <a href="#" id="nav-logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Product Details Section -->
+  <section class="product-details-section" id="product-details-section">
+    <div class="container">
+      <div id="loading-indicator" class="loading">Loading product details...</div>
+      
+      <div id="product-details-content" class="product-details-content" style="display: none;" data-testid="product-details-content">
+        <div class="product-image-container">
+          <img id="product-detail-image" src="" alt="Product" data-testid="product-image">
+        </div>
+        
+        <div class="product-info-container">
+          <h1 id="product-detail-title" data-testid="product-title"></h1>
+          
+          <div class="product-meta">
+            <span class="product-price" id="product-detail-price" data-testid="product-price"></span>
+            <span class="product-condition" id="product-detail-condition" data-testid="product-condition"></span>
+          </div>
+          
+          <div class="product-category">
+            <strong>Category:</strong> <span id="product-detail-category" data-testid="product-category"></span>
+          </div>
+          
+          <div class="product-description">
+            <h3>Description</h3>
+            <p id="product-detail-description" data-testid="product-description"></p>
+          </div>
+          
+          <div class="product-seller">
+            <h3>Seller Information</h3>
+            <p><strong>Name:</strong> <span id="product-detail-seller" data-testid="product-seller"></span></p>
+            <p><strong>Listed on:</strong> <span id="product-detail-date" data-testid="product-date"></span></p>
+          </div>
+          
+          <div class="product-actions">
+            <button id="btn-contact-seller" class="btn btn-primary" data-testid="contact-seller-button">
+              Contact Seller
+            </button>
+            <a href="/" class="btn btn-outline" id="btn-back-home">Back to Products</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="error-message" class="error-message" style="display: none;">
+        <p>Product not found or an error occurred.</p>
+        <a href="/" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="main-footer">
+    <div class="container">
+      <p id="footer-text">&copy; 2026 ReUseTech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/product-details.js"></script>
+</body>
+</html>

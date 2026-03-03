@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - ReUseTech</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h1 id="nav-logo">ReUseTech - Admin</h1>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/dashboard" id="nav-dashboard">Dashboard</a></li>
+        <li><a href="/admin" id="nav-admin">Admin Panel</a></li>
+        <li><a href="#" id="nav-logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Panel Section -->
+  <section class="admin-section" id="admin-section">
+    <div class="container">
+      <h2 id="admin-heading">Admin Panel</h2>
+      <p id="admin-subtitle">Manage all products on the platform</p>
+
+      <div id="admin-message" class="message" style="display: none;" data-testid="admin-message"></div>
+
+      <!-- Statistics Cards -->
+      <div class="stats-container" id="stats-container">
+        <div class="stat-card">
+          <h3>Total Products</h3>
+          <p id="stat-total-products" class="stat-number" data-testid="total-products">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Users</h3>
+          <p id="stat-total-users" class="stat-number" data-testid="total-users">N/A</p>
+        </div>
+        <div class="stat-card">
+          <h3>Available Products</h3>
+          <p id="stat-available-products" class="stat-number" data-testid="available-products">0</p>
+        </div>
+      </div>
+
+      <!-- All Products Table -->
+      <div class="table-container">
+        <h3>All Products</h3>
+        <div id="loading-indicator" class="loading">Loading products...</div>
+        
+        <table id="admin-products-table" class="admin-table" style="display: none;" data-testid="admin-products-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Seller</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-products-tbody" data-testid="admin-products-tbody">
+            <!-- Products will be loaded dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="main-footer">
+    <div class="container">
+      <p id="footer-text">&copy; 2026 ReUseTech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

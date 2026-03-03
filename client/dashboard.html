@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - ReUseTech</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h1 id="nav-logo">ReUseTech</h1>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/dashboard" id="nav-dashboard">Dashboard</a></li>
+        <li><a href="/add-product" id="nav-add-product">Add Product</a></li>
+        <li><span id="nav-username" class="nav-username">User</span></li>
+        <li><a href="#" id="nav-logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard-section" id="dashboard-section">
+    <div class="container">
+      <div class="dashboard-header">
+        <h2 id="dashboard-heading">My Products</h2>
+        <a href="/add-product" class="btn btn-primary" id="btn-add-new-product" data-testid="add-product-button">
+          + Add New Product
+        </a>
+      </div>
+
+      <div id="dashboard-message" class="message" style="display: none;" data-testid="dashboard-message"></div>
+
+      <!-- User Products Grid -->
+      <div class="products-grid" id="user-products-grid" data-testid="user-products-grid">
+        <div id="loading-indicator" class="loading">Loading your products...</div>
+      </div>
+
+      <div id="no-products-message" class="no-products" style="display: none;">
+        <p>You haven't added any products yet.</p>
+        <a href="/add-product" class="btn btn-primary">Add Your First Product</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edit Product Modal -->
+  <div id="edit-modal" class="modal" style="display: none;" data-testid="edit-modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <h2 id="modal-heading">Edit Product</h2>
+      
+      <div id="edit-message" class="message" style="display: none;"></div>
+
+      <form id="edit-form" data-testid="edit-form">
+        <input type="hidden" id="edit-product-id" data-testid="edit-product-id">
+        
+        <div class="form-group">
+          <label for="edit-title">Title</label>
+          <input type="text" id="edit-title" class="form-input" required data-testid="edit-title">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-description">Description</label>
+          <textarea id="edit-description" class="form-input" rows="4" required data-testid="edit-description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-category">Category</label>
+          <select id="edit-category" class="form-input" required data-testid="edit-category">
+            <option value="">Select Category</option>
+            <option value="Smartphones">Smartphones</option>
+            <option value="Laptops">Laptops</option>
+            <option value="Tablets">Tablets</option>
+            <option value="Cameras">Cameras</option>
+            <option value="Audio">Audio</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Wearables">Wearables</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-condition">Condition</label>
+          <select id="edit-condition" class="form-input" required data-testid="edit-condition">
+            <option value="">Select Condition</option>
+            <option value="Like New">Like New</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Poor">Poor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-price">Price ($)</label>
+          <input type="number" id="edit-price" class="form-input" required min="0" data-testid="edit-price">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-image">Image URL</label>
+          <input type="url" id="edit-image" class="form-input" data-testid="edit-image">
+        </div>
+
+        <button type="submit" id="btn-update-product" class="btn btn-primary" data-testid="update-product-button">
+          Update Product
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="main-footer">
+    <div class="container">
+      <p id="footer-text">&copy; 2026 ReUseTech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
