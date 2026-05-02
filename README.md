@@ -1,4 +1,4 @@
-# ReUseTech - Used Electronics Resale Platform
+ic# ReUseTech - Used Electronics Resale Platform
 
 A full-stack web application for buying and selling used electronics, built with Node.js, Express, MongoDB, and Vanilla JavaScript.
 

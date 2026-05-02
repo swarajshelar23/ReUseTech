@@ -23,6 +23,8 @@
   --text-color: #333333;
   --border-color: #ddd;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --surface: #ffffff;
+  --surface-alt: #f3f7fb;
 }
 
 body {
@@ -81,6 +83,26 @@ body {
 .nav-username {
   color: var(--secondary-color);
   font-weight: bold;
+}
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.4rem;
+  margin-left: 0.45rem;
+  border-radius: 999px;
+  background: var(--warning-color);
+  color: var(--dark-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.nav-badge-inline {
+  vertical-align: middle;
 }
 
 /* ========== Hero Section ========== */
@@ -493,6 +515,7 @@ select.form-input {
   gap: 1rem;
   align-items: center;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .product-price {
@@ -507,6 +530,39 @@ select.form-input {
   color: var(--white);
   border-radius: 20px;
   font-size: 0.9rem;
+}
+
+.product-status,
+.status-pill {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.product-status.status-available,
+.status-pill.status-available {
+  background-color: #e8f6ee;
+  color: #136f3a;
+}
+
+.product-status.status-reserved,
+.status-pill.status-reserved,
+.status-pill.status-pending {
+  background-color: #fff5db;
+  color: #8a5a00;
+}
+
+.product-status.status-sold,
+.status-pill.status-sold {
+  background-color: #fde8e5;
+  color: #9b2c20;
+}
+
+.status-pill.status-cancelled {
+  background-color: #f1f1f1;
+  color: #616161;
 }
 
 .product-category,
@@ -524,6 +580,236 @@ select.form-input {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.message-composer-card {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--surface-alt);
+}
+
+.message-composer-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.composer-hint {
+  margin-top: 0.75rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.dashboard-section-block {
+  margin-top: 3rem;
+}
+
+.dashboard-header-compact {
+  margin-bottom: 1rem;
+}
+
+.transactions-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.transaction-card {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.transaction-card-header,
+.inbox-item-top,
+.message-bubble-meta,
+.conversation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.transaction-card-header h3,
+.messages-header h2 {
+  margin-bottom: 0.25rem;
+}
+
+.transaction-card-body,
+.transaction-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.transaction-card-body {
+  margin: 1rem 0;
+  flex-direction: column;
+}
+
+.transaction-card-actions {
+  justify-content: flex-end;
+}
+
+.transaction-card-inline {
+  margin-top: 1rem;
+}
+
+.messages-section {
+  padding: 3rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+.messages-header {
+  margin-bottom: 1.5rem;
+}
+
+.messages-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+}
+
+.inbox-panel,
+.conversation-panel {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.inbox-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.inbox-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.inbox-item:hover,
+.inbox-item.active {
+  background: var(--surface-alt);
+}
+
+.inbox-item strong,
+.inbox-item-partner {
+  display: block;
+}
+
+.inbox-item-partner,
+.inbox-item-preview,
+.thread-meta,
+.empty-state {
+  color: var(--gray);
+}
+
+.unread-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--primary-color);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.conversation-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.thread-meta {
+  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.thread-meta strong {
+  display: block;
+  color: var(--dark-color);
+  margin-bottom: 0.25rem;
+}
+
+.conversation-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+
+.message-list {
+  flex: 1;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, #fafcff 0%, #f5f9fd 100%);
+}
+
+.message-bubble {
+  max-width: 75%;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.message-bubble.mine {
+  margin-left: auto;
+  background: #eaf5ff;
+}
+
+.message-bubble.theirs {
+  margin-right: auto;
+}
+
+.message-bubble p {
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+}
+
+.message-form {
+  padding: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--white);
+}
+
+.message-form .form-input {
+  margin-bottom: 0.75rem;
+}
+
+.thread-meta,
+.empty-state {
+  padding: 1rem 1.25rem;
+}
+
+.empty-state {
+  text-align: center;
+}
+
+.empty-state.compact {
+  padding: 1.25rem;
+}
+
+.dashboard-section-block .no-products {
+  margin-top: 0;
 }
 
 .error-message {
@@ -666,5 +952,17 @@ select.form-input {
   .admin-table th,
   .admin-table td {
     padding: 0.5rem;
+  }
+
+  .messages-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .thread-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .message-bubble {
+    max-width: 100%;
   }
 }

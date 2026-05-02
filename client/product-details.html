@@ -20,7 +20,8 @@
           <a href="/register" id="nav-register">Register</a>
         </li>
         <li class="nav-user" id="nav-user-links" style="display: none;">
-          <a href="/dashboard" id="nav-dashboard">Dashboard</a>
+          <a href="/dashboard" id="nav-dashboard">Dashboard <span class="nav-badge" id="nav-transaction-badge" style="display: none;"></span></a>
+          <a href="/messages" id="nav-messages">Messages <span class="nav-badge" id="nav-message-badge" style="display: none;"></span></a>
           <a href="#" id="nav-logout">Logout</a>
         </li>
       </ul>
@@ -43,6 +44,7 @@
           <div class="product-meta">
             <span class="product-price" id="product-detail-price" data-testid="product-price"></span>
             <span class="product-condition" id="product-detail-condition" data-testid="product-condition"></span>
+            <span class="product-status" id="product-detail-status" data-testid="product-status"></span>
           </div>
           
           <div class="product-category">
@@ -64,7 +66,16 @@
             <button id="btn-contact-seller" class="btn btn-primary" data-testid="contact-seller-button">
               Contact Seller
             </button>
+            <button id="btn-request-purchase" class="btn btn-secondary" data-testid="request-purchase-button">
+              Request Purchase
+            </button>
             <a href="/" class="btn btn-outline" id="btn-back-home">Back to Products</a>
+          </div>
+
+          <div class="message-composer-card">
+            <h3>Message the Seller</h3>
+            <textarea id="initial-message" class="form-input" rows="4" placeholder="Write a message to the seller about this item..." data-testid="initial-message"></textarea>
+            <p class="composer-hint">Use Contact Seller to start a conversation or Request Purchase to send a message and create a transaction.</p>
           </div>
         </div>
       </div>

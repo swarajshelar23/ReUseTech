@@ -17,8 +17,8 @@ const { protect, authorize } = require('../middleware/auth');
 
 // Public routes
 router.get('/', getAllProducts);
-router.get('/:id', getProductById);
 router.get('/user/:userId', getUserProducts);
+router.get('/:id', getProductById);
 
 // Protected routes (require authentication)
 router.post('/', protect, createProduct);

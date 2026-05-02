@@ -5,6 +5,7 @@
 
 let userProducts = [];
 let editingProductId = null;
+let userTransactions = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   // Protect page - require login
@@ -12,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load user's products
   loadUserProducts();
+
+  // Load user's transactions
+  loadUserTransactions();
 
   // Setup modal
   setupModal();
@@ -63,6 +67,116 @@ async function loadUserProducts() {
     }
   }
 }
+
+/**
+ * Load user's transactions
+ */
+async function loadUserTransactions() {
+  const transactionsGrid = document.getElementById('user-transactions-grid');
+  const loadingIndicator = document.getElementById('transactions-loading-indicator');
+
+  try {
+    const data = await apiRequest('/transactions/me');
+
+    if (loadingIndicator) {
+      loadingIndicator.style.display = 'none';
+    }
+
+    if (data.success) {
+      userTransactions = data.transactions;
+      displayTransactions(userTransactions);
+    }
+  } catch (error) {
+    console.error('Error loading transactions:', error);
+    if (loadingIndicator) {
+      loadingIndicator.textContent = 'Error loading transactions.';
+      loadingIndicator.style.color = 'red';
+    }
+  }
+}
+
+function displayTransactions(transactions) {
+  const transactionsGrid = document.getElementById('user-transactions-grid');
+
+  if (!transactionsGrid) return;
+
+  transactionsGrid.innerHTML = '';
+
+  if (transactions.length === 0) {
+    transactionsGrid.innerHTML = '<p class="no-products">No transactions yet.</p>';
+    return;
+  }
+
+  transactions.forEach(transaction => {
+    transactionsGrid.appendChild(createTransactionCard(transaction));
+  });
+}
+
+function createTransactionCard(transaction) {
+  const card = document.createElement('div');
+  card.className = 'transaction-card';
+  card.setAttribute('data-transaction-id', transaction._id);
+
+  const currentUser = getUser();
+  const isSeller = currentUser && transaction.seller && String(currentUser.id) === String(transaction.seller._id);
+  const statusClass = `status-${transaction.status}`;
+
+  card.innerHTML = `
+    <div class="transaction-card-header">
+      <div>
+        <h3>${transaction.product.title}</h3>
+        <p>${formatPrice(transaction.amount)} · ${isSeller ? 'Seller view' : 'Buyer view'}</p>
+      </div>
+      <span class="status-pill ${statusClass}">${transaction.status}</span>
+    </div>
+    <div class="transaction-card-body">
+      <p><strong>Buyer:</strong> ${transaction.buyer.name}</p>
+      <p><strong>Seller:</strong> ${transaction.seller.name}</p>
+      ${transaction.note ? `<p><strong>Note:</strong> ${transaction.note}</p>` : ''}
+    </div>
+    <div class="transaction-card-actions">
+      <a href="/product/${transaction.product._id}" class="btn btn-outline btn-small">View Product</a>
+      ${renderTransactionButtons(transaction, isSeller)}
+    </div>
+  `;
+
+  return card;
+}
+
+function renderTransactionButtons(transaction, isSeller) {
+  if (isSeller) {
+    return `
+      <button class="btn btn-secondary btn-small" onclick="updateTransaction('${transaction._id}', 'reserved')">Reserve</button>
+      <button class="btn btn-primary btn-small" onclick="updateTransaction('${transaction._id}', 'sold')">Mark Sold</button>
+      <button class="btn btn-danger btn-small" onclick="updateTransaction('${transaction._id}', 'cancelled')">Cancel</button>
+    `;
+  }
+
+  if (transaction.status === 'pending' || transaction.status === 'reserved') {
+    return `<button class="btn btn-danger btn-small" onclick="updateTransaction('${transaction._id}', 'cancelled')">Cancel Request</button>`;
+  }
+
+  return '';
+}
+
+async function updateTransaction(transactionId, status) {
+  try {
+    const data = await apiRequest(`/transactions/${transactionId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ status })
+    });
+
+    if (data.success) {
+      showMessage('transactions-message', data.message, 'success');
+      loadUserTransactions();
+      loadUserProducts();
+    }
+  } catch (error) {
+    showMessage('transactions-message', error.message, 'error');
+  }
+}
+
+window.updateTransaction = updateTransaction;
 
 /**
  * Display user products

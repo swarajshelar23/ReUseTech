@@ -7,6 +7,9 @@ require('dotenv').config();
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
+const messageRoutes = require('./routes/messageRoutes');
+const transactionRoutes = require('./routes/transactionRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Initialize Express app
@@ -43,6 +46,9 @@ connectDB();
  */
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/transactions', transactionRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -85,6 +91,10 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/admin.html'));
 });
 
+app.get('/messages', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/messages.html'));
+});
+
 /**
  * Error Handler Middleware (must be last)
  */
@@ -95,9 +105,19 @@ app.use(errorHandler);
  */
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`❌ Port ${PORT} is already in use. Please close the existing process and try again.`);
+    console.error(`   Run: netstat -ano | findstr :${PORT}  then  taskkill /PID <pid> /F`);
+    process.exit(1);
+  } else {
+    throw err;
+  }
 });
 
 module.exports = app;

@@ -15,8 +15,9 @@
       </div>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="/" id="nav-home">Home</a></li>
-        <li><a href="/dashboard" id="nav-dashboard">Dashboard</a></li>
+        <li><a href="/dashboard" id="nav-dashboard">Dashboard <span class="nav-badge" id="nav-transaction-badge" style="display: none;"></span></a></li>
         <li><a href="/add-product" id="nav-add-product">Add Product</a></li>
+        <li><a href="/messages" id="nav-messages">Messages <span class="nav-badge" id="nav-message-badge" style="display: none;"></span></a></li>
         <li><span id="nav-username" class="nav-username">User</span></li>
         <li><a href="#" id="nav-logout">Logout</a></li>
       </ul>
@@ -43,6 +44,17 @@
       <div id="no-products-message" class="no-products" style="display: none;">
         <p>You haven't added any products yet.</p>
         <a href="/add-product" class="btn btn-primary">Add Your First Product</a>
+      </div>
+
+      <div class="dashboard-section-block">
+        <div class="dashboard-header dashboard-header-compact">
+          <h2 id="transactions-heading">My Transactions <span class="nav-badge nav-badge-inline" id="dashboard-transaction-badge" style="display: none;"></span></h2>
+        </div>
+
+        <div id="transactions-message" class="message" style="display: none;"></div>
+        <div class="transactions-grid" id="user-transactions-grid" data-testid="user-transactions-grid">
+          <div id="transactions-loading-indicator" class="loading">Loading your transactions...</div>
+        </div>
       </div>
     </div>
   </section>

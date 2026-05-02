@@ -140,6 +140,40 @@ function updateNavigation() {
 }
 
 /**
+ * Update notification badges in shared navigation
+ */
+async function updateNotificationBadges() {
+  if (!isLoggedIn()) {
+    return;
+  }
+
+  try {
+    const data = await apiRequest('/notifications/summary');
+
+    const messageBadge = document.getElementById('nav-message-badge');
+    const dashboardBadge = document.getElementById('nav-transaction-badge');
+    const dashboardSectionBadge = document.getElementById('dashboard-transaction-badge');
+
+    if (messageBadge) {
+      messageBadge.textContent = data.unreadMessages;
+      messageBadge.style.display = data.unreadMessages > 0 ? 'inline-flex' : 'none';
+    }
+
+    if (dashboardBadge) {
+      dashboardBadge.textContent = data.openTransactions;
+      dashboardBadge.style.display = data.openTransactions > 0 ? 'inline-flex' : 'none';
+    }
+
+    if (dashboardSectionBadge) {
+      dashboardSectionBadge.textContent = data.openTransactions;
+      dashboardSectionBadge.style.display = data.openTransactions > 0 ? 'inline-flex' : 'none';
+    }
+  } catch (error) {
+    console.error('Notification badge update failed:', error);
+  }
+}
+
+/**
  * Handle logout
  */
 function handleLogout() {
@@ -162,6 +196,7 @@ function protectPage() {
 document.addEventListener('DOMContentLoaded', () => {
   // Update navigation
   updateNavigation();
+  updateNotificationBadges();
 
   // Setup logout button
   const logoutBtn = document.getElementById('nav-logout');
